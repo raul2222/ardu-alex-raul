@@ -18,7 +18,7 @@ const int LOADCELL_SCK_PIN = 3;
 HX711 scale;
 
 void setup() {
-  Serial.begin(38400);
+  Serial.begin(9600);
   Serial.println("HX711 Demo");
 
   Serial.println("Initializing the scale");
@@ -66,13 +66,17 @@ void setup() {
   Serial.println("Readings:");
 }
 
+void tare_weight(){
+   scale.tare();                // reset the scale to 0
+}
+
 void loop() {
-  Serial.print("one reading:\t");
-  Serial.print(scale.get_units(), 1);
+  //Serial.print("one reading:\t");
+  //Serial.print(scale.get_units(), 1);
   Serial.print("\t| average:\t");
   Serial.println(scale.get_units(20), 1);
 
   scale.power_down();			        // put the ADC in sleep mode
-  delay(5000);
+  delay(1300);
   scale.power_up();
 }
